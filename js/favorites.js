@@ -3,8 +3,6 @@
 const searchResultsDiv = document.querySelector('#searchresults')
 let favorites = []
 
-console.log(localStorage.getItem('favorites'))
-
 if (localStorage.getItem('favorites')) {
     favorites = JSON.parse(localStorage.getItem('favorites'))
 }
