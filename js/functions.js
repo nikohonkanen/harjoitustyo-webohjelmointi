@@ -1,7 +1,7 @@
 'use strict'
 
 const searchUrl = 'https://api.spoonacular.com/recipes/complexSearch?'
-const apiKey = '1f60995cba9a4cc2a3795b69b84e864c'
+const apiKey = ''
 
 const searchbar = document.querySelector('#searchbar')
 const searchBtn = document.querySelector('#searchButton')

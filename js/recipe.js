@@ -2,7 +2,7 @@
 
 const recipeUrl = 'https://api.spoonacular.com/recipes/'
 const recipleUrl2 = '/information?includeNutrition=false&addWinePairing=false&addTasteData=false&apiKey='
-const apiKey = '1f60995cba9a4cc2a3795b69b84e864c'
+const apiKey = ''
 
 const recipeID = document.location.search.slice(4)
 //const recipe = JSON.parse(localStorage.getItem('recipe'))
