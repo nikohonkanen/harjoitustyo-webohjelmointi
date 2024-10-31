@@ -34,6 +34,7 @@ favButton.addEventListener('click', () => {
         // Jos ei ole aikaisempia favoriteja, niin luodaan uusi lista
         localStorage.setItem('favorites', JSON.stringify([favObject]))
     }
+    console.log(localStorage.getItem('favorites'))
 })
 
 const buildRecipe = (recipe) => {

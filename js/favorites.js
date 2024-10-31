@@ -1,19 +1,19 @@
 'use strict'
 
 const searchResultsDiv = document.querySelector('#searchresults')
-let favorites = []
-
-if (localStorage.getItem('favorites')) {
-    favorites = JSON.parse(localStorage.getItem('favorites'))
-}
 
 searchResultsDiv.addEventListener('click', (e) => {
     if (e.target.nodeName === 'BUTTON') {
+        let favorites = JSON.parse(localStorage.getItem('favorites'))
         const removeMe = e.target.id
         for (let i = 0; i < favorites.length; i++) {
             if (favorites[i].id === removeMe) {
                 favorites.splice(i, 1)
-                localStorage.setItem('favorites', JSON.stringify(favorites))
+                if (favorites.length === 0) {
+                    localStorage.removeItem('favorites')
+                } else {
+                    localStorage.setItem('favorites', JSON.stringify(favorites))
+                }
                 createFavs(favorites)
             }
         }
