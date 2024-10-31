@@ -16,6 +16,23 @@ const favButton = document.querySelector('#favButton')
 let recipeInfo = []
 
 favButton.addEventListener('click', () => {
+    if (favButton.value === 'Remove from favorites') {
+        let favorites = JSON.parse(localStorage.getItem('favorites'))
+        const removeMe = recipeID
+        for (let i = 0; i < favorites.length; i++) {
+            if (favorites[i].id === removeMe) {
+                favorites.splice(i, 1)
+                if (favorites.length === 0) {
+                    localStorage.removeItem('favorites')
+                } else {
+                    localStorage.setItem('favorites', JSON.stringify(favorites))
+                }
+                favButton.value = 'Add to favorites'
+                return
+            }
+        }
+    }
+
     const favObject = {id: recipeID, title: recipeInfo[0], image: recipeInfo[1]}
 
     // Katsotaan onko aikaisempia favoriteja
@@ -34,7 +51,7 @@ favButton.addEventListener('click', () => {
         // Jos ei ole aikaisempia favoriteja, niin luodaan uusi lista
         localStorage.setItem('favorites', JSON.stringify([favObject]))
     }
-    console.log(localStorage.getItem('favorites'))
+    favButton.value = 'Remove from favorites'
 })
 
 const buildRecipe = (recipe) => {
@@ -61,6 +78,16 @@ const buildRecipe = (recipe) => {
         const instrItem = document.createElement('li')
         instrItem.innerHTML = recipe.analyzedInstructions[0].steps[i].step
         rInstructions.appendChild(instrItem)
+    }
+
+    if (localStorage.getItem('favorites')) {
+        const favorites = JSON.parse(localStorage.getItem('favorites'))
+        for (let i = 0; i < favorites.length; i++) {
+            if (favorites[i].id === recipeID) {
+                favButton.value = 'Remove from favorites'
+                return
+            }
+        }
     }
 }
 
